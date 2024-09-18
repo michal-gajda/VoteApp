@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Vote</h1>
+<div mat-dialog-content>
+  <form [formGroup]="voteForm">
+    <mat-form-field appearance="fill" class="dropdown">
+      <mat-label>I am</mat-label>
+      <mat-select formControlName="selectedVoter">
+        <mat-option *ngFor="let voter of voters$ | async" [value]="voter">
+          <span>{{ voter.name | titlecase }}</span>
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="voteForm.get('selectedVoter')?.hasError('required')">
+        Voter is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="dropdown">
+      <mat-label>I vote for</mat-label>
+      <mat-select formControlName="selectedCandidate">
+        <mat-option *ngFor="let candidate of candidates$ | async" [value]="candidate">
+          {{ candidate.name | titlecase }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="voteForm.get('selectedCandidate')?.hasError('required')">
+        Candidate is required.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onSubmit()" color="primary" [disabled]="voteForm.invalid">
+    Submit
+  </button>
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+</div>

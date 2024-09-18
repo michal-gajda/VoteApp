@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Add New Candidate</h1>
+<div mat-dialog-content>
+  <form [formGroup]="candidateForm">
+
+    <mat-form-field appearance="fill" class="input-field">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="candidateForm.get('name')?.hasError('required')">
+        Name is required.
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onSubmit()" color="primary" [disabled]="candidateForm.invalid">Submit</button>
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+</div>

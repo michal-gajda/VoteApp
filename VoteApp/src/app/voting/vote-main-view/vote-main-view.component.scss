@@ -1,0 +1,62 @@
+.tables-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  .table-voters {
+    width: 100%;
+  }
+
+  .table-candidates {
+    width: 100%;
+  }
+
+  .scrollable-table-container {
+    max-height: 250px;
+    overflow-y: auto;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .table-title {
+      margin: 0 0 0 0.3rem;
+    }
+  }
+
+  .column-name {
+    flex: 5;
+  }
+
+  .column-has-voted,
+  .column-votes {
+    flex: 1;
+  }
+}
+
+.load-table {
+  color: rgb(39 14 231);
+  font-size: 24px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+
+  .large-button {
+    font-size: 1.5rem;
+    padding: 16px 32px;
+    height: 60px;
+    width: 200px;
+  }
+}

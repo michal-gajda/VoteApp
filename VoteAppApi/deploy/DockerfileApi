@@ -1,0 +1,39 @@
+# Use the official ASP.NET Core runtime as a parent image
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+
+# Copy the solution file
+COPY ["VoteApp.Api.sln", "VoteAppApi/"]
+
+# Copy all project files for each library and application
+COPY ["VoteApp.Api/VoteApp.Api.csproj", "VoteAppApi/VoteApp.Api/"]
+COPY ["VoteApp.Application/VoteApp.Application.csproj", "VoteAppApi/VoteApp.Application/"]
+COPY ["VoteApp.Domain/VoteApp.Domain.csproj", "VoteAppApi/VoteApp.Domain/"]
+COPY ["VoteApp.Dto/VoteApp.Dto.csproj", "VoteAppApi/VoteApp.Dto/"]
+COPY ["VoteApp.Infrastructure/VoteApp.Infrastructure.csproj", "VoteAppApi/VoteApp.Infrastructure/"]
+COPY ["VoteApp.SharedCommon/VoteApp.SharedCommon.csproj", "VoteAppApi/VoteApp.SharedCommon/"]
+
+COPY ["VoteApp.Application.Tests/VoteApp.Application.Tests.csproj", "VoteAppApi/VoteApp.Application.Tests/"]
+COPY ["VoteApp.Domain.Tests/VoteApp.Domain.Tests.csproj", "VoteAppApi/VoteApp.Domain.Tests/"]
+COPY ["VoteApp.Tests.Common/VoteApp.Tests.Common.csproj", "VoteAppApi/VoteApp.Tests.Common/"]
+
+# Restore all dependencies for the solution
+RUN dotnet restore "VoteAppApi/VoteApp.Api.sln"
+
+# Copy all files and build the application
+COPY . VoteAppApi/
+
+WORKDIR "/src/VoteAppApi/VoteApp.Api"
+RUN dotnet publish "VoteApp.Api.csproj" -c Release -o /app/publish --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+WORKDIR /app
+
+EXPOSE 80
+
+COPY --from=build /app/publish .
+
+COPY deploy/wait-for-it.sh /app/wait-for-it.sh
+RUN chmod +x /app/wait-for-it.sh
+
+ENTRYPOINT ["/app/wait-for-it.sh", "--timeout=30","voteappdb:1433", "--", "dotnet", "VoteApp.Api.dll"]

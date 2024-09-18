@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>0.0.1</Version>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.33">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.33" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.33" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.33" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.33" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.33">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="6.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.25.1" />
+    <PackageReference Include="Polly" Version="8.2.1" />
+    <PackageReference Include="Polly.Extensions" Version="8.2.1" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.32.0.97167">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+	 <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="13.18.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="System.Private.ServiceModel" Version="4.10.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.10.0" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.10.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.10.0" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VoteApp.Application\VoteApp.Application.csproj" />
+    <ProjectReference Include="..\VoteApp.Domain\VoteApp.Domain.csproj" />
+    <ProjectReference Include="..\VoteApp.Infrastructure\VoteApp.Infrastructure.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Using Include="VoteApp.SharedCommon" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="appsettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+</Project>

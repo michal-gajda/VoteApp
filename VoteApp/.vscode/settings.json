@@ -1,0 +1,50 @@
+{
+  "stylelint.validate": ["css", "scss"],
+  "scss.validate": false,
+  "angular.enable-strict-mode-prompt": false,
+  "angular.components.standalone": false,
+  "angular.files.include": ["ts"],
+  "angular.files.exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/out/**",
+    "**/build/**",
+    "**/.*/**"
+  ],
+  "angular.files.watch": ["modules", "components", "services"],
+  "angular.files.showPath": true,
+  "angular.submenu.customCommands": [
+    {
+      "name": "Template 1",
+      "command": "ng g c",
+      "args": "--style css --standalone true --inline-style --inline-template"
+    },
+    {
+      "name": "Template 2",
+      "command": "ng g c",
+      "args": "--style scss --standalone false --inline-style --inline-template"
+    }
+  ],
+  "angular.submenu.activateItem": {
+    "terminal": {
+      "component": true,
+      "guard": true,
+      "pipe": true,
+      "service": true
+    },
+    "file": {
+      "class": true,
+      "component": true,
+      "directive": true,
+      "enum": true,
+      "guard": true,
+      "interceptor": true,
+      "interface": true,
+      "module": true,
+      "pipe": true,
+      "resolver": true,
+      "service": true,
+      "spec": true
+    }
+  }
+}

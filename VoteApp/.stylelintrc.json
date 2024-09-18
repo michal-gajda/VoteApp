@@ -1,0 +1,7 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "no-empty-source": null,
+    "color-function-notation": "modern"
+  }
+}

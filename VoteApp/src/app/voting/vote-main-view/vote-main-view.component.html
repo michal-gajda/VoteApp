@@ -1,0 +1,80 @@
+<ng-template #loading>
+  <div class="load-table">
+    <span>Loading...</span>
+  </div>
+</ng-template>
+
+<div class="tables-container">
+  <div class="table-voters">
+    <div class="table-header">
+      <h2 class="table-title">Voters</h2>
+      <button mat-mini-fab color="primary" (click)="onAddVoter()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="scrollable-table-container" *ngIf="voters$ | async as voters; else loading">
+      <mat-table [dataSource]="voters" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef class="column-name">
+            Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="column-name">
+            {{ element.name | titlecase}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="hasVoted">
+          <mat-header-cell *matHeaderCellDef class="has-voted">
+            Has voted
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="has-voted">
+            {{ element.hasVoted ? "yes" : "no" }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row
+          *matHeaderRowDef="displayedColumnsVoters"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: displayedColumnsVoters"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+
+  <div class="table-candidates">
+    <div class="table-header">
+      <h2 class="table-title">Candidates</h2>
+      <button mat-mini-fab color="primary" (click)="onAddCandidate()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="scrollable-table-container" *ngIf="candidates$ | async as candidates; else loading">
+      <mat-table [dataSource]="candidates" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef class="column-name">
+            Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="column-name">
+            {{ element.name | titlecase}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="votes">
+          <mat-header-cell *matHeaderCellDef class="column-votes">
+            Votes
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="column-votes">
+            {{ element.votes }}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumnsCandidates"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumnsCandidates"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</div>
+
+<div class="buttons-container">
+  <button mat-raised-button color="primary" class="large-button" (click)="onVote()">
+    Vote
+  </button>
+</div>
